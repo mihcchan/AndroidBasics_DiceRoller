@@ -24,10 +24,13 @@ class MainActivity : AppCompatActivity() {
     private fun rollDice() {
         //Cria um novo dado com 6 lados e rola o dado
         val dice = Dice(6)
+        val dice2 = Dice(6)
         val diceRoll = dice.roll()
+        val diceRoll2 = dice2.roll()
 
         //Encontra a ImageView no layout
         val diceImage: ImageView = findViewById(R.id.imageView)
+        val diceImage2: ImageView = findViewById(R.id.imageView2)
 
         //Determina qual drawable resource ID será utilizado baseado no dado rolado
         val drawableResource = when (diceRoll) {
@@ -38,16 +41,24 @@ class MainActivity : AppCompatActivity() {
             5 -> R.drawable.dice_5
             else -> R.drawable.dice_6
         }
+        val drawableResource2 = when (diceRoll2) {
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
+        }
 
         //Atualiza a ImageView com o id correto
         diceImage.setImageResource(drawableResource)
+        diceImage2.setImageResource(drawableResource2)
 
         //Atualiza a descrição da imagem com o numero do dado rolado
         diceImage.contentDescription = diceRoll.toString()
+        diceImage2.contentDescription = diceRoll2.toString()
     }
 }
-
-
 
 class Dice(private val numSides: Int) {
 
@@ -55,3 +66,4 @@ class Dice(private val numSides: Int) {
         return (1..numSides).random()
     }
 }
+
